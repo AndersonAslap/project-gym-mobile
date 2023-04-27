@@ -1,0 +1,106 @@
+NATIVE BASE
+
+(verificar sempre na documentação)
+
+- https://docs.nativebase.io/install-expo
+
+- npm install native-base
+- expo install react-native-svg@12.1.1
+- expo install react-native-safe-area-context@3.3.2
+
+
+=======
+
+
+REACT NATIVE SVG TRANSFORMER (SVG)
+serve para ultilizar o svg como componente 
+
+-https://github.com/kristerkari/react-native-svg-transformer
+
+- npm install --save-dev react-native-svg-transformer
+
+configurar um arquivo chamafo `metro.config.js` 
+adicionando o código abaixo
+
+const { getDefaultConfig } = require("expo/metro-config");
+
+---
+const { getDefaultConfig } = require("expo/metro-config");
+
+module.exports = (() => {
+  const config = getDefaultConfig(__dirname);
+
+  const { transformer, resolver } = config;
+
+  config.transformer = {
+    ...transformer,
+    babelTransformerPath: require.resolve("react-native-svg-transformer"),
+  };
+  config.resolver = {
+    ...resolver,
+    assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
+    sourceExts: [...resolver.sourceExts, "svg"],
+  };
+
+  return config;
+})();
+----
+
+
+=======
+
+REACT NAVIGATION
+
+-https://reactnavigation.org/docs/getting-started
+
+- npm install @react-navigation/native (core de navegação independente da estratégia de navegação)
+
+- npx expo install react-native-screens react-native-safe-area-context (dependências da lib)
+
+- npm install @react-navigation/native-stack (estratégia de navegação - pilha)
+- npm install @react-navigation/bottom-tabs (estratégia de navegação - tabs)
+
+========
+
+EXPO IMAGE PICKER
+
+-https://docs.expo.dev/versions/latest/sdk/imagepicker/?utm_source=google&utm_medium=cpc&utm_content=performancemax&gclid=CjwKCAjw9J2iBhBPEiwAErwpedLrFwTE5Ske-RqWcqp5iT_UfPrjRYD266xskYddy11OtC8GSP7P_RoCTu0QAvD_BwE
+
+
+---- app.json
+
+{
+  "expo": {
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ]
+  }
+}
+
+-------------
+
+==========
+
+EXPO FILE SYSTEM
+
+- npx expo install expo-file-system
+
+=========
+
+REACT HOOK FORM 
+
+- npm install react-hook-form
+
+=========
+
+YUP 
+
+- npm install @hookform/resolvers yup
+
+
+=========
